@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+<!-- HEADER -->
+  <header class="sticky top-0 bg-white shadow z-50">
+    <div class="container flex flex-col sm:flex-row justify-between items-center mx-auto py-4 px-8 font-['Inter']">
+      <!-- Nouveau logo en image -->
+      <div class="flex items-center">
+        <a href="index.html">
+        <img src="assets/Recrut Plus Logo.png" alt="Logo de Lander" class="h-12 w-auto mr-3" />
+      </div>
+
+<!-- Navigation -->
+      <nav class="flex mt-4 sm:mt-0 space-x-6 text-base font-medium">
+        <a href="#accueil" class="text-black hover:text-blue-700">Accueil</a>
+        <a href="#fonctionnement" class="text-[#a6a6a6] hover:text-blue-700">Fonctionnement</a>
+        <a href="#offres" class="text-[#a6a6a6] hover:text-blue-700">Offres</a>
+        <a href="#avantages" class="text-[#a6a6a6] hover:text-blue-700">Avantages</a>
+        <a href="#chiffres" class="text-[#a6a6a6] hover:text-blue-700">Nos chiffres</a>
+      </nav>
+
+<!-- Bouton d'inscription -->
+      <div class="hidden md:block mt-4 space-x-6 sm:mt-0">
+        <a href="/inscription.html" class="text-[#a6a6a6] hover:text-blue-700">
+          Connexion
+        </a>
+        <a href="/inscription.html" class="py-2 px-6 bg-[#00329b] text-white rounded-lg text-base hover:bg-blue-800">
+          Inscription
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+<!-- Acceuil-->
+    <section id="accueil" class="pt-20 md:pt-40 bg-white">
+      <div class="container mx-auto px-8 lg:flex items-center">
+
+        <!-- Colonne gauche : Texte -->
+        <div class="text-center lg:text-left lg:w-1/2">
+          <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold leading-none text-[#00329b]">
+            Recrutez les meilleurs profils, plus vite.
+          </h1>
+          <p class="text-xl lg:text-2xl mt-6 font-light text-gray-700">
+            Notre solution intelligente vous propose des CVs adaptés à vos besoins, selon votre abonnement.
+          </p>
+          <div class="mt-8 md:mt-12 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4">
+            <a href="#contact"
+               class="py-4 px-8 bg-[#00329b] hover:bg-blue-800 text-white rounded-lg text-lg">
+              Contactez-nous
+            </a>
+            <a href="/inscription.html"
+               class="py-4 px-8 border border-[#00329b] hover:bg-[#00329b] hover:text-white text-[#00329b] rounded-lg text-lg">
+              Inscription
+            </a>
+          </div>
+          <p class="mt-4 text-gray-500 text-sm">Un service conçu pour gagner du temps et recruter efficacement.</p>
+        </div>
+      
+        <!-- Colonne droite : Image -->
+        <div class="mt-10 lg:mt-0 lg:ml-12 lg:w-1/2">
+          <img src="assets/Image1.png"
+               alt="Illustration Accueil"
+               class="w-full h-auto max-w-md mx-auto lg:max-w-full">
+        </div>
+      
+      </div>
+    </section>
+
+<!-- Bande des infos profils -->
+    <section class="bg-[#f9f9f9] py-12">
+      <div class="container mx-auto px-8 text-center">
+        <!-- Titre principal -->
+        <h2 class="text-3xl md:text-4xl font-bold text-[#191a15] mb-8">
+          Plus de 25 000 profils disponibles
+        </h2>
+
+        <!-- Liste des catégories -->
+        <div class="flex flex-wrap justify-center gap-14 gap-y-4 text-xl text-[#a6a6a6] font-semibold font-['Inter']">
+          <span>Informatique </span>
+          <span>Gestion  </span>
+          <span>Comptabilité  </span>
+          <span>Santé  </span>
+          <span>Data  </span>
+          <span>Transport  </span>
+        </div>
+      </div>
+    </section>
+
+<!-- Fonctionnement -->
+    <section id="fonctionnement" class="bg-[#f9f8fe] py-20 px-6">
+      <div class="container mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
+
+        <!-- Partie gauche -->
+        <div class="lg:w-1/2 space-y-6">
+          <h2 class="text-4xl font-semibold text-[#191a15]">Comment nous fonctionnons ?</h2>
+          <p class="text-[#a6a6a6] leading-7">
+            Commencez par sélectionner l'abonnement qui correspond à vos besoins de recrutement. Que vous soyez une startup ou une grande entreprise, nous avons un plan adapté à votre volume de recrutements.
+          </p>
+        
+          <!-- Avis -->
+          <div class="flex space-x-12 pt-4">
+            <div>
+              <p class="text-lg text-[#191a15] font-bold">4.9 <span class="font-normal">/</span> <span class="font-medium">5 notes</span></p>
+              <p class="text-[#a6a6a6] font-bold">Rapidité</p>
+            </div>
+            <div>
+              <p class="text-lg text-[#191a15] font-bold">4.8 <span class="font-normal">/</span> <span class="font-medium">5 notes</span></p>
+              <p class="text-[#a6a6a6] font-bold">Efficacité</p>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Partie droite -->
+        <div class="lg:w-1/2 space-y-10">
+          <!-- Étape 1 -->
+          <div class="flex items-start space-x-4">
+            <div class="w-14 h-14 flex items-center justify-center bg-white shadow-md rounded">
+              <!-- Icône (à remplacer selon ton besoin) -->
+              <div class="w-6 h-6 border-2 border-[#00027d] rounded"></div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#191a15]">Décrivez le profil que vous recherchez</h3>
+              <p class="text-[#a6a6a6] text-base leading-6">
+                Remplissez un formulaire simple : poste, compétences, expérience, localisation, etc.
+              </p>
+            </div>
+          </div>
+        
+          <!-- Étape 2 -->
+          <div class="flex items-start space-x-4">
+            <div class="w-14 h-14 flex items-center justify-center bg-white shadow-md rounded">
+              <div class="w-6 h-6 border-2 border-[#00027d] rounded-full"></div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#191a15]">Recevez des CVs correspondants</h3>
+              <p class="text-[#a6a6a6] text-base leading-6">
+                Notre système sélectionne et vous envoie des profils parfaitement adaptés.
+              </p>
+            </div>
+          </div>
+        
+          <!-- Étape 3 -->
+          <div class="flex items-start space-x-4">
+            <div class="w-14 h-14 flex items-center justify-center bg-white shadow-md rounded">
+              <div class="w-5 h-5 bg-gradient-to-br from-[#00027d] to-[#00027d] rounded-full"></div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#191a15]">Contactez les candidats</h3>
+              <p class="text-[#a6a6a6] text-base leading-6">
+                Consultez les profils, échangez directement et recrutez plus rapidement.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<!-- Princing Cards -->
+
+    <section id="offres" class="w-full py-20 bg-white flex flex-col items-center px-4">
+      <h2 class="text-4xl font-bold text-[#191a15] text-center max-w-2xl leading-tight mb-4">
+        Choisissez le plan qui est parfait pour vous!
+      </h2>
+      <p class="text-lg text-[#a6a6a6] font-bold text-center mb-12">
+        Si vous avez des difficultés à choisir, contactez-nous!
+      </p>
+    
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full">
+
+        <!-- Starter -->
+        <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center min-h-[540px] transform transition-all hover:-translate-y-2 hover:shadow-xl">
+          <h3 class="text-2xl font-semibold text-[#00027d] mb-2">Starter</h3>
+          <p class="text-[#a6a6a6] text-center mb-4">L'essentiel pour recruter vite et simplement.</p>
+          <div class="text-[#00027d] text-[40px] font-semibold mb-2">25 000 <span class="text-lg text-[#a6a6a6]">FCFA</span></div>
+          <ul class="text-[#191a15] text-base font-medium space-y-2 my-6 text-left">
+            <li>Jusqu'à 5 CVs ciblés</li>
+            <li>Accès profil standard</li>
+            <li>Annulation à tout moment</li>
+            <li>Assistance Basique par email</li>
+            <li>Aucun Bonus</li>
+          </ul>
+          <button class="bg-white text-[#ff5a00] font-semibold rounded-xl py-2 px-6 shadow transition hover:bg-[#ff5a00] hover:text-white hover:scale-105">
+            Choisir
+          </button>
+        </div>
+    
+        <!-- Pro -->
+        <div class="bg-[#00027d] rounded-2xl text-white relative overflow-hidden p-6 flex flex-col items-center min-h-[540px] transform transition-all hover:-translate-y-2 hover:shadow-2xl">
+          <div class="absolute top-4 left-4 bg-[#ff5a00] px-3 py-1 rounded text-sm font-semibold z-10">
+            Économisez 5000 FCFA/an
+          </div>
+          <h3 class="text-2xl font-semibold mt-8 mb-2">Pro</h3>
+          <p class="text-center mb-4">Pour les entreprises en phase de croissance.</p>
+          <div class="text-[40px] font-semibold mb-2">40 000 <span class="text-lg">FCFA</span></div>
+          <ul class="bg-white text-[#191a15] rounded-xl text-base font-medium p-6 w-full space-y-2 my-6 text-left">
+            <li>Jusqu'à 15 CVs ciblés</li>
+            <li>Accès profil Standard + filtres avancés</li>
+            <li>Annulation à tout moment</li>
+            <li>Support prioritaire</li>
+            <li>1 boost de visibilité offert/mois</li>
+          </ul>
+          <button class="bg-[#ff5a00] text-white font-semibold rounded-xl py-2 px-6 shadow transition hover:bg-white hover:text-[#ff5a00] hover:scale-105">
+            Choisir
+          </button>
+        </div>
+    
+        <!-- Premium -->
+        <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center min-h-[540px] transform transition-all hover:-translate-y-2 hover:shadow-xl">
+          <h3 class="text-2xl font-semibold text-[#00027d] mb-2">Premium</h3>
+          <p class="text-[#a6a6a6] text-center mb-4">Le pack complet pour un recrutement intensif.</p>
+          <div class="text-[#00027d] text-[40px] font-semibold mb-2">55 000 <span class="text-lg text-[#a6a6a6]">FCFA</span></div>
+          <ul class="text-[#191a15] text-base font-medium space-y-2 my-6 text-left">
+            <li>Jusqu'à 40 CVs ciblés</li>
+            <li>Accès complet + profils premium</li>
+            <li>Annulation à tout moment</li>
+            <li>Support dédié</li>
+            <li>1 boost de visibilité offert/mois</li>
+          </ul>
+          <button class="bg-white text-[#ff5a00] font-semibold rounded-xl py-2 px-6 shadow transition hover:bg-[#ff5a00] hover:text-white hover:scale-105">
+            Choisir
+          </button>
+        </div>
+      </div>
+    </section>
+
+    
+<!-- Avantages -->
+    <section id="avantages" class="w-full py-5 bg-white px-4">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <!-- Texte -->
+        <div class="flex-1">
+          <h2 class="text-4xl md:text-5xl font-bold text-[#191a15] mb-6">
+            Pourquoi choisir notre solution ?
+          </h2>
+          <ul class="space-y-4 text-lg text-[#191a15] font-medium leading-[30px]">
+            <li>✅ Gain de temps</li>
+            <li>✅ Candidats pré-qualifiés</li>
+            <li>✅ Plateforme simple et intuitive</li>
+            <li>✅ Tarification flexible</li>
+            <li>✅ Accompagnement personnalisé</li>
+          </ul>
+        </div>
+      
+        <!-- Image -->
+        <div class="flex-1">
+          <img src="assets/Image2.png" alt="Avantages de notre solution" class="w-full rounded-xl shadow-md">
+        </div>
+      </div>
+    </section>
+
+<!-- Chiffres -->
+    <section id="chiffres" class="relative bg-[#00027d] py-16 px-4 overflow-hidden">
+      <!-- Contenu des chiffres -->
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 text-white text-center z-10 relative">
+        <div>
+          <h3 class="text-5xl font-semibold leading-tight">3 Jours</h3>
+          <p class="text-base mt-2">Temps moyen de recrutement</p>
+        </div>
+        <div>
+          <h3 class="text-5xl font-semibold leading-tight">70</h3>
+          <p class="text-base mt-2">Entreprises partenaires</p>
+        </div>
+        <div>
+          <h3 class="text-5xl font-semibold leading-tight">95%</h3>
+          <p class="text-base mt-2">De satisfaction client</p>
+        </div>
+        <div>
+          <h3 class="text-5xl font-semibold leading-tight">300+</h3>
+          <p class="text-base mt-2">CVs envoyés chaque mois</p>
+        </div>
+      </div>
+    
+      <!-- Décorations -->
+      <img src="assets/Cloche.png" alt="Décor 1"
+        class="absolute top-10 right-10 w-[112px] h-[112px] rotate-[15deg] opacity-60" />
+      <img src="assets/Pots.png" alt="Décor 2"
+        class="absolute bottom-4 left-10 w-[103px] h-[103px] opacity-60" />
+    </section>
+    
+    
+    <footer id="contact" class="bg-[#ECEFF5] text-[#505050] pt-10 px-4 relative">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
+        <!-- Colonne 1 -->
+        <div>
+          <img src="assets/Recrut Plus Logo rm.png" alt="Logo Talents Plus Afrique" class="w-100 h-100" />
+          <p class="text-sm">
+            Une application de TALENTS PLUS AFRIQUE<br />
+            Bénin<br />
+            Côte d’Ivoire<br />
+            Mali<br />
+            Togo
+          </p>
+        </div>
+    
+        <!--  Pages -->
+        <div>
+          <h4 class="text-black text-lg font-medium mb-1">Pages</h4>
+          <ul class="space-y-1 text-sm leading-7">
+            <li><a href="#accueil" class="hover:underline">Accueil</a></li>
+            <li><a href="#fonctionnement" class="hover:underline">Fonctionnement</a></li>
+            <li><a href="#offres" class="hover:underline">Offres</a></li>
+            <li><a href="#avantages" class="hover:underline">Avantages</a></li>
+            <li><a href="#chiffres" class="hover:underline">Nos chiffres</a></li>
+          </ul>
+        </div>
+    
+        <!--  Contact -->
+        <div>
+          <h4 class="text-black text-lg font-medium mb-3">Contact nous</h4>
+          <p class="text-sm leading-6">
+            TALENTS PLUS AFRIQUE<br />
+            Bénin, Cotonou<br />
+            info@talentsplusafrique.com
+          </p>
+          <p class="text-sm mt-2">+908 89097 890</p>
+        </div>
+      </div>
+    
+<!-- Réseaux sociaux -->
+      <div class="flex gap-4 justify-center md:justify-end">
+        <!-- Exemple avec une image -->
+        <div class="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center">
+          <img src="assets/Facebook.png" alt="Facebook" class="w-4 h-4" />
+        </div>
+        <div class="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center">
+          <img src="assets/Instagram.png" alt="Instagram" class="w-4 h-4" />
+        </div>
+        <div class="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center">
+          <img src="assets/Linkedin.png" alt="LinkedIn" class="w-4 h-4" />
+        </div>
+      </div>
+    
+      <!-- Ligne & copyright -->
+      <div class="border-t border-[#d2d2d2] mt-10 pt-4 text-center text-xs text-[#686868]">
+        Copyright © 2025 TALENTS PLUS AFRIQUE
+      </div>
+    </footer>
+    
+
+</body>
+</html>
