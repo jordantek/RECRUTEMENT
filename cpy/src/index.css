@@ -1,0 +1,393 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Inter';
+  src: url('public/fonts/Inter-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('public/fonts/Inter-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('public/fonts/Inter-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('public/fonts/Inter-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('public/fonts/Inter-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('public/fonts/Inter-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('public/fonts/Inter-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('public/fonts/Inter-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('public/fonts/Inter-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  font-family: Inter,sans-serif, system-ui, Avenir, Helvetica, Arial;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+/*button:hover {
+  border-color: #ff5a00;
+}*/
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+}
+
+body:focus-visible {
+  outline: 0 auto -webkit-focus-ring-color;
+}
+
+.focus-visible-hidden :focus {
+  outline: 0 auto -webkit-focus-ring-color;
+}
+.select-content-ps {
+  z-index: 9999 !important;
+}
+
+.date-picker-ps {
+  z-index: 99999 !important;
+  position: absolute !important;
+  pointer-events: all !important;
+}
+
+.no-days .rdp-head {
+  display: none;
+}
+
+.react-datepicker__month-dropdown,
+.react-datepicker__year-dropdown {
+  @apply bg-background text-foreground;
+}
+
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__year-read-view--down-arrow {
+  @apply border-t-foreground;
+}
+
+.react-datepicker__month-option:hover,
+.react-datepicker__year-option:hover {
+  @apply bg-accent;
+}
+
+/*button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}*/
+
+body {
+  @apply font-sans;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+body {
+  @apply font-sans;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+  :root {
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .theme {
+    --animate-aurora: aurora 8s ease-in-out infinite alternate;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 226 45% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 226 45% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 226 45% 10%;
+
+    --primary: 217 91% 60%; /* Tailwind Blue 600 (#2563EB) */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 226 100% 97%;           /* Très clair, comme #E8F0FE */
+    --secondary-foreground: 226 40% 30%;
+
+    --muted: 226 60% 94%;                /* #D2E3FC-like */
+    --muted-foreground: 226 20% 50%;
+
+    --accent: 226 100% 90%;              /* #AECBFA-like */
+    --accent-foreground: 226 50% 25%;
+
+    --destructive: 0 84% 60%;            /* rouge standard */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 226 40% 85%;
+    --input: 226 40% 85%;
+
+    --ring: 217 91% 60%;              /* same as primary */
+    --radius: 0.5rem;
+
+    /* Graphiques / Dashboards */
+    --chart-1: 226 83% 54%;              /* Google Blue */
+    --chart-2: 174 61% 45%;              /* Google Green */
+    --chart-3: 39 100% 60%;              /* Google Yellow */
+    --chart-4: 291 45% 58%;              /* Google Purple */
+    --chart-5: 10 80% 60%;               /* Google Orange */
+  }
+
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 226 45% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 226 45% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 226 45% 10%;
+
+    --primary: 217 91% 60%; /* Tailwind Blue 600 (#2563EB) */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 226 100% 97%;           /* Très clair, comme #E8F0FE */
+    --secondary-foreground: 226 40% 30%;
+
+    --muted: 226 60% 94%;                /* #D2E3FC-like */
+    --muted-foreground: 226 20% 50%;
+
+    --accent: 226 100% 90%;              /* #AECBFA-like */
+    --accent-foreground: 226 50% 25%;
+
+    --destructive: 0 84% 60%;            /* rouge standard */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 226 40% 85%;
+    --input: 226 40% 85%;
+
+    --ring: 217 91% 60%;              /* same as primary */
+    --radius: 0.5rem;
+
+    /* Graphiques / Dashboards */
+    --chart-1: 226 83% 54%;              /* Google Blue */
+    --chart-2: 174 61% 45%;              /* Google Green */
+    --chart-3: 39 100% 60%;              /* Google Yellow */
+    --chart-4: 291 45% 58%;              /* Google Purple */
+    --chart-5: 10 80% 60%;               /* Google Orange */
+
+  }
+}
+
+/* Logo */
+#logoIcon {
+  width: 165px;
+}
+
+@media screen and (max-width: 768px) {
+  #logoIcon {
+    width: 130px;
+  }
+}
+
+@media print {
+  .noprint {
+    display: none !important;
+  }
+}
+
+.scroll-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Assurez-vous que le modal ne garde pas un z-index trop élevé après la fermeture */
+.modal-overlay {
+  z-index: 100; /* ajustez selon vos besoins */
+}
+
+/* Assurez-vous que le modal se ferme correctement et n'interfère pas avec le reste du DOM */
+.modal {
+  pointer-events: auto; /* assurez-vous que le modal ne bloque pas les événements */
+}
+/*---break---*/
+@theme inline {
+  @keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+    }
+  25% {
+    background-position: 50% 100%;
+    transform: rotate(5deg) scale(1.1);
+    }
+  50% {
+    background-position: 100% 50%;
+    transform: rotate(-3deg) scale(0.95);
+    }
+  75% {
+    background-position: 50% 0%;
+    transform: rotate(3deg) scale(1.05);
+    }
+  100% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+    }
+  }
+}

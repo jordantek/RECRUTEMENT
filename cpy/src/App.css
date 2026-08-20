@@ -1,0 +1,22 @@
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+
+/* Dans votre fichier CSS global */
+.table-cell-libelle {
+  min-width: 200px;
+  max-width: 300px;
+  white-space: normal;
+}
+
+.table-cell-niveau {
+  min-width: 1200px;
+  max-width: 400px;
+  white-space: normal;
+}
