@@ -1,0 +1,1 @@
+{"success":false,"message":"Erreur d'authentification : JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.","data":null,"errorCode":null,"errors":null,"expiredToken":false}

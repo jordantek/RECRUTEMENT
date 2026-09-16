@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+                                  http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="prelevement_mensualite"
+              pageWidth="595" pageHeight="842"
+              columnWidth="555"
+              leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20">
+
+    <parameter name="totalPrelevementMensualite" class="java.lang.Double"/>
+
+    <field name="moisPrelevementMensualite" class="java.lang.Object"/>
+    <field name="employe" class="java.lang.String"/>
+    <field name="institution" class="java.lang.String"/>
+    <field name="montantPrelevementMensualite" class="java.lang.Object"/>
+
+    <title>
+        <band height="40">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Rapport des Prélèvements Mensualité]]></text>
+            </staticText>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="20">
+            <staticText>
+                <reportElement x="0" y="0" width="150" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <text><![CDATA[Mois]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="150" y="0" width="150" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <text><![CDATA[Employé]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="0" width="150" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <text><![CDATA[Institution]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="450" y="0" width="100" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <text><![CDATA[Montant]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="150" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textFieldExpression><![CDATA[$F{moisPrelevementMensualite}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="150" y="0" width="150" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textFieldExpression><![CDATA[$F{employe}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="300" y="0" width="150" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textFieldExpression><![CDATA[$F{institution}]]></textFieldExpression>
+            </textField>
+            <textField pattern="#,##0.00">
+                <reportElement x="450" y="0" width="100" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textFieldExpression><![CDATA[$F{montantPrelevementMensualite}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <summary>
+        <band height="30">
+            <staticText>
+                <reportElement x="300" y="0" width="150" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <text><![CDATA[Total:]]></text>
+            </staticText>
+            <textField pattern="#,##0.00">
+                <reportElement x="450" y="0" width="100" height="20"/>
+                <box>
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+                <textFieldExpression><![CDATA[$P{totalPrelevementMensualite}]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+
+</jasperReport>

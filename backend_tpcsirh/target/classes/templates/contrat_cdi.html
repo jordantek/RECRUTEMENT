@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Contrat de Travail CDI</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm 2cm;
+        }
+
+        body {
+            font-family: "Arial", "Helvetica", sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+
+        .letterhead {
+            width: 20%;
+            height: auto;
+            max-height: 4cm;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 1cm;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 14pt;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .sub-header {
+            font-size: 9pt;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 15px 0 8px 0;
+            font-size: 12pt;
+        }
+
+        .party-section {
+            margin-bottom: 15px;
+        }
+
+        .party-title {
+            font-weight: bold;
+            font-size: 12pt;
+            margin-bottom: 8px;
+            text-decoration: underline;
+        }
+
+        .info-line {
+            margin: 3px 0;
+        }
+
+        .info-line strong {
+            display: inline-block;
+            width: 260px;
+            font-weight: bold;
+        }
+
+        .centered-text {
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .article {
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+
+        .article h4 {
+            font-size: 11pt;
+            font-weight: bold;
+            margin: 0 0 8px 0;
+            text-decoration: underline;
+        }
+
+        .article p {
+            margin: 5px 0;
+            text-align: justify;
+            text-indent: 0;
+        }
+
+        .signatures {
+            margin-top: 40px;
+            page-break-inside: avoid;
+        }
+
+        .signatures table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .signatures td {
+            vertical-align: top;
+            padding: 10px;
+        }
+
+        .signature-left {
+            width: 50%;
+            text-align: left;
+        }
+
+        .signature-right {
+            width: 50%;
+            text-align: right;
+        }
+
+        .signature-space {
+            height: 60px;
+            border-bottom: 1px solid #ccc;
+            margin-top: 20px;
+        }
+
+        .visa-section {
+            margin-top: 30px;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        .visa-section div {
+            margin: 8px 0;
+        }
+
+        .amount-highlight {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Styles spécifiques pour certains champs */
+        .field-value {
+            font-weight: normal;
+            /*text-decoration: underline;*/
+        }
+
+        .mission-list {
+            margin: 10px 0 10px 20px;
+        }
+
+        .date-field {
+            display: inline-block;
+            min-width: 120px;
+            border-bottom: 1px solid #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<img th:src="${enteteImage}" alt="En-tête" class="letterhead"/>
+<div class="header">
+    <h2 th:text="${libelleTitre}">
+        CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE
+    </h2>
+    <div class="sub-header">(Document officiel - République du Bénin)</div>
+</div>
+
+<p class="section-title">ENTRE LES SOUSSIGNÉS</p>
+
+<div class="party-section">
+    <div class="party-title">EMPLOYEUR</div>
+    <div class="info-line">
+        <strong>Raison sociale :</strong>
+        <span class="field-value" th:text="${entreprise}">Nom de l'entreprise</span>
+    </div>
+    <div class="info-line">
+        <strong>Siège social :</strong>
+        <span class="field-value">Cotonou, République du Bénin</span>
+    </div>
+    <div class="info-line">
+        <strong>Adresse :</strong>
+        <span class="field-value" th:text="${adresseEntreprise}">Adresse complète</span>
+    </div>
+    <div class="info-line">
+        <strong>Représenté(e) légalement par :</strong>
+        <span class="field-value"> <span th:text="${nomPrenomSignataire}">Nom du DG</span></span>
+    </div>
+    <div class="info-line">
+        <strong>Fonction :</strong>
+        <span class="field-value">Directeur Général</span>
+    </div>
+</div>
+<p class="centered-text">CI-APRÈS DÉSIGNÉ « L'EMPLOYEUR » D'UNE PART ET,</p>
+<div class="party-section">
+    <div class="party-title">EMPLOYÉ</div>
+    <div class="info-line">
+        <strong>Nom &amp; Prénoms :</strong>
+        <span class="field-value" th:text="${employe}">Nom et prénoms</span>
+    </div>
+    <div class="info-line">
+        <strong>Date et lieu de naissance :</strong>
+        <span class="field-value">
+            <span th:text="${#temporals.format(dateNaissanceFormatee, 'dd/MM/yyyy')}">01/01/1990</span>
+            à <span th:text="${lieuNaissance}">Lieu de naissance</span>
+        </span>
+    </div>
+    <div class="info-line">
+        <strong>Nationalité :</strong>
+        <span class="field-value" th:text="${nationaliteEmploye}">Nationalité</span>
+    </div>
+    <div class="info-line">
+        <strong>Résidence habituelle :</strong>
+        <span class="field-value" th:text="${adresseEmploye}">Adresse de résidence</span>
+    </div>
+    <div class="info-line">
+        <strong>Situation de famille :</strong>
+        <span class="field-value" th:text="${situationMatrimoniale}">Situation matrimoniale</span>
+    </div>
+    <div class="info-line">
+        <strong>Diplôme requis pour l'emploi occupé :</strong>
+        <span class="field-value" th:text="${diplomeRequis}">Diplôme</span>
+    </div>
+</div>
+<p class="centered-text">CI-APRÈS DÉSIGNÉ « L'EMPLOYÉ » D'AUTRE PART</p>
+<p>Qui déclare être libre de tout engagement, il a été d'un commun accord convenu de ce qui suit :</p>
+<div class="article">
+    <h4>ARTICLE 1 : CONDITIONS GÉNÉRALES D'ENGAGEMENT</h4>
+    <p>
+        Le présent contrat est régi par la loi n° 98-004 du 27 Janvier 1998 portant Code du Travail,
+        les textes modificatifs subséquents et ceux pris pour son application ; la loi n° 2017-05 du
+        29 Août 2017 fixant les conditions et la procédure d'embauche, de placement de la main-d'œuvre
+        et de résiliation du contrat de travail en République du Bénin ; la loi N° 98-019 du 21 Mars 2003
+        portant Code de Sécurité Sociale en République du Bénin et la Loi N° 2007-02 du 26 Mars 2007
+        portant modification des dispositions des articles 10, 89, 93, 94, 95 et 101 de la loi n°98-019
+        du 21 mars 2003 portant Code de Sécurité Sociale en République du Bénin ; la Convention Collective
+        Générale du Travail du 30 déc. 2005.
+    </p>
+</div>
+<div class="article">
+    <h4>ARTICLE 2 : NATURE DU CONTRAT</h4>
+    <p>
+        Le présent contrat est conclu pour <strong>une durée indéterminée</strong> et prend effet à compter du
+        <span class="date-field" th:text="${#temporals.format(dateEffet, 'dd/MM/yyyy')}">__/__/____</span>.
+    </p>
+    <p>À ce titre, il est chargé principalement de :</p>
+    <em th:text="${missions}"></em>
+</div>
+<div class="article">
+    <h4>ARTICLE 3 : FONCTION</h4>
+    <p>
+        L'employé(e) exercera sous le contrôle de ses supérieurs hiérarchiques, les fonctions de
+        <strong><span th:text="${fonctionEmploye}">Fonction à définir</span></strong>.
+        Il s'engage à s'acquitter avec zèle et fidélité des travaux ou missions qui lui seront confiés
+        et à se rendre en tous lieux où l'employeur aura besoin de ses services.
+        Le présent contrat est valable en République du Bénin.
+    </p>
+</div>
+<div class="article">
+    <h4>ARTICLE 4 : DURÉE HEBDOMADAIRE DE TRAVAIL</h4>
+    <p>
+        La durée et les horaires de travail sont fixés par l'employeur dans le respect des dispositions légales.
+        Le salarié est tenu d'accomplir les heures supplémentaires qui lui sont prescrites par la hiérarchie
+        dont il relève.
+    </p>
+</div>
+<div class="article">
+    <h4>ARTICLE 5 : PÉRIODE D'ESSAI</h4>
+    <p>
+        La période allant du
+        <span class="date-field"
+              th:text="${dateDebutEssai != null ? #temporals.format(dateDebutEssai, 'dd/MM/yyyy') : ''}">__/__/____</span>
+        au
+        <span class="date-field"
+              th:text="${dateFinEssai != null ? #temporals.format(dateFinEssai, 'dd/MM/yyyy') : ''}">__/__/____</span>
+        sera considérée comme période d'essai pendant laquelle le présent contrat de travail peut être
+        résilié par chacune des parties. Elle est renouvelable une fois.
+    </p>
+    <p>
+        En cas de rupture par l'une ou l'autre des parties, aucune indemnité ne sera due que celle
+        compensatrice de congé payé au prorata du temps effectué à la charge de l'employeur.
+    </p>
+</div>
+<div class="article">
+    <h4>ARTICLE 6 : LIEU DE TRAVAIL</h4>
+    <p>Le travail s'effectuera à <span th:text="${lieuTravail} ?: 'Cotonou'">Cotonou</span>.
+        Toutefois, l'employeur se réserve la possibilité d'affecter le salarié en tout autre lieu où besoin sera.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE 7 : VOYAGE - BAGAGES - TRANSPORTS</h4>
+    <p>
+        Dans les conditions prévues à l'article 174 du Code du travail, le travailleur a droit au transport
+        gratuit pour lui, son conjoint et ses enfants mineurs vivant habituellement avec lui du lieu d'emploi
+        au lieu de résidence habituelle et du lieu de résidence habituelle au lieu d'emploi :
+    </p>
+    <p>– En cas de résiliation, lorsque l'employé a acquis droit au congé ;</p>
+    <p>– En cas de résiliation du contrat due à un cas de force majeure ;</p>
+    <p>– En cas de congé normal.</p>
+    <p>
+        Si le contrat est résilié pour faute lourde de l'agent ou de son fait, le montant des frais de transport,
+        aller et retour incombant à l'employeur est proportionnel au temps de service du travailleur.
+    </p>
+</div>
+<div class="article">
+    <h4>ARTICLE 8 : RÉMUNÉRATION</h4>
+    <p>
+        Le salaire brut mensuel actuel de <span th:text="${genre}"></span>
+        <span th:text="${employe}">Nom Prénom</span>
+        est fixé à la somme de
+        <span class="amount-highlight">
+            <span th:text="${salaireBrutContrat}">0</span> FCFA
+        </span>
+        (<span th:text="${salaireEnLettres} ?: 'montant en lettres'">montant en lettres</span>).
+    <ul>
+        <li th:each="rubrique : ${rubriques}">
+            <span th:text="${rubrique.libelle}"></span> :
+            <span th:text="${rubrique.montant}"></span> FCFA
+        </li>
+    </ul>
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE 9 : SÉCURITÉ SOCIALE</h4>
+    <p>
+        L’employeur s’engage à affilier l’Agent à la Caisse Nationale de Sécurité Sociale et à y verser régulièrement
+        les cotisations.
+    </p>
+
+</div>
+<div class="article">
+    <h4>ARTICLE 10 : SOINS MÉDICAUX ET HOSPITALISATION</h4>
+    <p>
+        Le travailleur bénéficie à concurrence de 100% des frais de consultation et de soins d’urgence donnés par le
+        médecin de l’Entreprise dans les conditions prévues par le règlement en vigueur et conformément à l’article 73
+        de la Convention Collective Générale du Travail.
+        <br/>En cas d’accident survenu au cours ou à l’occasion du service, les droits et obligations des parties seront
+        réglés conformément aux textes en vigueur en la matière.
+    </p>
+</div>
+<div class="article">
+    <h4>ARTICLE 11 : CONDITIONS D’EXECUTION DU CONTRAT</h4>
+    <p>
+        <span th:text="${genre}"></span> <span class="field-value" th:text="${employe}">Nom et prénoms</span> s’engage à
+        observer toutes les instructions et consignes particulières de
+        travail qui
+        lui seront données et à respecter une stricte obligation sur tout ce qui concerne l’activité de l’entreprise.
+
+        <br/> <br/>
+        <span th:text="${genre}"></span> <span class="field-value" th:text="${employe}">Nom et prénoms</span> devra
+        faire connaître à l’entreprise sans délai toute modification postérieure
+        à son
+        engagement qui pourrait intervenir dans son état civil, sa situation familiale et son adresse.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE 12 : MATÉRIELS</h4>
+    <p>
+        Il sera mis à la disposition de <span th:text="${genre}"></span> <span class="field-value" th:text="${employe}">Nom et prénoms</span>
+        divers documents techniques et juridiques ou
+        logiciels,
+        propriété exclusive de la société qui ne pourront être dupliqués sous quelque forme que ce soit. Monsieur
+        <span class="field-value" th:text="${employe}">Nom et prénoms</span> ne doit les utiliser qu’à titre
+        professionnel et les laisser sur les lieux de travail. Il est garant
+        de leur maintien en parfait état. <br/>
+        A cet égard, le matériel restant la propriété de la société, un contrôle permanent est exercé par tout moyen sur
+        son utilisation.
+    </p>
+</div>
+<div class="article">
+    <h4>ARTICLE 13 : CONGÉ PAYE</h4>
+    <p>
+        Le travailleur a droit au congé payé à la charge de l’employeur à raison de deux (2) jours ouvrables par mois de
+        service effectif, soit 24 jours ouvrables par an. <br/>
+        L’allocation de congé sera au moins égale à un (1) mois de salaire brut.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE 14 : RÉSILIATION</h4>
+    <p>
+        Le présent contrat sera rompu sous réserve de l’observation d’une période de préavis conformément aux
+        dispositions de l’article 53 du code de travail. <br/> <br/>
+
+        Le présent contrat peut être aussi rompu sans préavis en cas de fautes lourdes du travailleur ou de l’employeur
+        sous réserve de l’appréciation de la juridiction compétente en ce qui concerne la gravité de la faute.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE 15 : CLAUSE D’OBLIGATION DE DISCRÉTION</h4>
+    <p>
+        Sauf accord des parties, l’employé s’engage, à ne communiquer à qui que ce soit, pendant la durée de son contrat
+        de travail et après sa rupture, des informations et documents sur les méthodes, l’organisation et le
+        fonctionnement de l’entreprise et à faire preuve d’une discrétion absolue sur l’ensemble des données ou
+        informations dont il pourrait avoir connaissance, directement ou indirectement que celles-ci soient ou non en
+        rapport avec ses fonctions.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE 16 : CLAUSE DE NON CONCURRENCE</h4>
+    <p>
+        L’employé s’interdit de divulguer, pendant ou après son emploi, tous renseignements de nature confidentielle
+        qu’il aurait pu recueillir dans l’exercice de sa fonction. Il s’engage à consacrer tout son temps de travail,
+        dans la limite des règlements en vigueur, au service de l’employeur et s’interdit sans autorisation écrite de
+        l’employeur même en temps de repos, toute activité professionnelle susceptible de concurrencer son employeur ou
+        de nuire à l’exécution normale des services convenus.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE 17 : CLAUSE ATTRIBUTIVE DE JURIDICTION</h4>
+    <p>
+        Le tribunal compétent pour connaître de tous différends liés à l’exécution du présent contrat sera le tribunal
+        du lieu de travail ou celui de la résidence habituelle du travailleur.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE 18 : DIVERS</h4>
+    <p>
+        Pour tout ce qui n’est pas précisé au présent contrat, les parties s’en remettent à la convention collective
+        générale ou à ses annexes ou à défaut, aux dispositions légales et réglementaires en vigueur, ou encore aux
+        usages locaux.
+    </p>
+</div>
+<!-- Articles 9 à 19 suivent le même pattern... -->
+
+<div class="article">
+    <h4>ARTICLE 19 : DATE DE PRISE D'EFFET</h4>
+    <p>
+        Le présent contrat prend effet à compter du
+        <span class="date-field" th:text="${#temporals.format(dateEffet, 'dd/MM/yyyy')}">__/__/____</span>.
+    </p>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <p><strong>Fait en trois (3) exemplaires originaux</strong></p>
+    <p>
+        Cotonou, le
+        <span class="date-field"
+              th:text="${dateSignature != null ? #temporals.format(dateSignature, 'dd/MM/yyyy') : #temporals.format(#temporals.createNow(), 'dd/MM/yyyy')}">__/__/____</span>
+    </p>
+</div>
+
+<div class="signatures">
+    <table>
+        <tr>
+            <td class="signature-left">
+                <strong>L'Employé</strong><br/>
+                <em>Signature précédée de la mention manuscrite « lu et approuvé »</em>
+                <div class="signature-space"></div>
+                <span class="field-value" th:text="${employe}"></span>
+            </td>
+            <td class="signature-right">
+                <strong>L'Employeur</strong>
+                <div class="signature-space"></div>
+                <span class="field-value" th:text="${nomPrenomSignataire}"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="text-align:center; margin-top:20px;">
+    <img th:src="${qrCode}" alt="QR Code" width="120" height="120"/>
+</div>
+
+<div class="visa-section">
+    <div><strong>VISÉ S/N°<span th:text="${numeroEnregistrement}">__________</span> <span th:text="${directionEnregistrementContrat}">MTFP/DGT/DRP-DS/SRI</span> du <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy')}">__/__/____</span></strong></div>
+    <br/>
+    <div><strong>La Directrice(eur) Générale du Travail</strong></div>
+    <br/><br/>
+    <div><strong><span th:text="${directeurDepartementalTravail}"></span></strong></div>
+</div>
+
+</body>
+</html>

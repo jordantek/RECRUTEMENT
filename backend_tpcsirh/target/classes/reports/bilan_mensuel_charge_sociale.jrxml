@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+              http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="bilan_mensuel_charge_sociale"
+              pageWidth="842"
+              pageHeight="595"
+              orientation="Landscape"
+              columnWidth="802"
+              leftMargin="20"
+              rightMargin="20"
+              topMargin="20"
+              bottomMargin="20">
+
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+
+    <!-- Styles pour les bordures -->
+    <style name="TableHeader" mode="Opaque" backcolor="#2E75B6" isBold="true">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+        <paragraph lineSpacing="Single"/>
+    </style>
+
+    <style name="TableData" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+        <paragraph lineSpacing="Single"/>
+    </style>
+
+    <style name="TableTotal" mode="Opaque" backcolor="#F2F2F2" isBold="true">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+        <paragraph lineSpacing="Single"/>
+    </style>
+
+    <parameter name="mois" class="java.lang.String"/>
+    <parameter name="entreprise" class="java.lang.String"/>
+    <parameter name="employeur" class="java.lang.String"/>
+    <parameter name="numeroEmployeur" class="java.lang.String"/>
+
+    <field name="mois" class="java.lang.String"/>
+    <field name="entreprise" class="java.lang.String"/>
+    <field name="employe" class="java.lang.String"/>
+    <field name="numeroCnss" class="java.lang.String"/>
+    <field name="salaireBrut" class="java.math.BigDecimal"/>
+    <field name="cnssEmploye" class="java.math.BigDecimal"/>
+    <field name="cnssEmployeur" class="java.math.BigDecimal"/>
+    <field name="totalChargeSociale" class="java.math.BigDecimal"/>
+
+    <variable name="salaireBrut_SUM" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{salaireBrut}]]></variableExpression>
+    </variable>
+
+    <variable name="cnssEmploye_SUM" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{cnssEmploye}]]></variableExpression>
+    </variable>
+
+    <variable name="cnssEmployeur_SUM" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{cnssEmployeur}]]></variableExpression>
+    </variable>
+
+    <variable name="totalChargeSociale_SUM" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{totalChargeSociale}]]></variableExpression>
+    </variable>
+
+    <title>
+        <band height="100" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="802" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[BILAN MENSUEL DES CHARGES SOCIALES]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="0" y="40" width="802" height="20"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true" size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Mois : " + $P{mois}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="0" y="60" width="802" height="20"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Entreprise : " + $P{entreprise}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="30" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="30" style="TableHeader"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <text><![CDATA[Employé]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="200" y="0" width="150" height="30" style="TableHeader"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <text><![CDATA[Numéro CNSS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="350" y="0" width="120" height="30" style="TableHeader"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <text><![CDATA[Salaire Brut]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="470" y="0" width="120" height="30" style="TableHeader"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <text><![CDATA[CNSS Employé]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="590" y="0" width="120" height="30" style="TableHeader"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <text><![CDATA[CNSS Employeur]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="710" y="0" width="92" height="30" style="TableHeader"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <text><![CDATA[Total Charges]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="25" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="200" height="25" style="TableData"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{employe}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="200" y="0" width="150" height="25" style="TableData"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{numeroCnss}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="350" y="0" width="120" height="25" style="TableData"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{salaireBrut} != null ? $F{salaireBrut} : 0]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="470" y="0" width="120" height="25" style="TableData"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{cnssEmploye} != null ? $F{cnssEmploye} : 0]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="590" y="0" width="120" height="25" style="TableData"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{cnssEmployeur} != null ? $F{cnssEmployeur} : 0]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="710" y="0" width="92" height="25" style="TableData"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{totalChargeSociale} != null ? $F{totalChargeSociale} : 0]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <summary>
+        <band height="40">
+            <staticText>
+                <reportElement x="0" y="0" width="350" height="30" style="TableTotal"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <text><![CDATA[TOTAL]]></text>
+            </staticText>
+            <textField evaluationTime="Report">
+                <reportElement x="350" y="0" width="120" height="30" style="TableTotal"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{salaireBrut_SUM}]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="470" y="0" width="120" height="30" style="TableTotal"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{cnssEmploye_SUM}]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="590" y="0" width="120" height="30" style="TableTotal"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{cnssEmployeur_SUM}]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="710" y="0" width="92" height="30" style="TableTotal"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" pdfFontName="Helvetica-Bold" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{totalChargeSociale_SUM}]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+
+    <noData>
+        <band height="100">
+            <staticText>
+                <reportElement x="0" y="0" width="802" height="100"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Aucune donnée disponible pour la période sélectionnée]]></text>
+            </staticText>
+        </band>
+    </noData>
+</jasperReport>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+                                  http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="xls_etat_prelevement_mensualite"
+              pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
+              uuid="e51e1d34-c9b3-41d6-9302-3e45cde67890">
+
+    <!-- STYLES (placés au début) -->
+    <style name="TableHeader" mode="Opaque" forecolor="#FFFFFF" backcolor="#3F51B5" fontName="Arial" fontSize="12" isBold="true"/>
+    <style name="TableRow" mode="Opaque" backcolor="#F0F0F0" fontName="Arial" fontSize="11"/>
+
+    <!-- PARAMÈTRES -->
+    <parameter name="totalPrelevementMensualite" class="java.lang.Double"/>
+
+    <!-- CHAMPS -->
+    <field name="moisPrelevementMensualite" class="java.lang.String"/>
+    <field name="employe" class="java.lang.String"/>
+    <field name="institution" class="java.lang.String"/>
+    <field name="montantPrelevementMensualite" class="java.lang.Double"/>
+
+    <!-- TITRE -->
+    <title>
+        <band height="30">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="30" uuid="11111111-1111-1111-1111-111111111111"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" />
+                <text><![CDATA[État des prélèvements mensuels]]></text>
+            </staticText>
+        </band>
+    </title>
+
+    <!-- EN-TÊTE DE COLONNE -->
+    <columnHeader>
+        <band height="20">
+            <staticText>
+                <reportElement style="TableHeader" x="0" y="0" width="130" height="20" uuid="22222222-2222-2222-2222-222222222222"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" />
+                <text><![CDATA[Mois]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TableHeader" x="130" y="0" width="150" height="20" uuid="33333333-3333-3333-3333-333333333333"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" />
+                <text><![CDATA[Employé]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TableHeader" x="280" y="0" width="130" height="20" uuid="44444444-4444-4444-4444-444444444444"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" />
+                <text><![CDATA[Institution]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="TableHeader" x="410" y="0" width="145" height="20" uuid="55555555-5555-5555-5555-555555555555"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" />
+                <text><![CDATA[Montant]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <!-- DÉTAILS -->
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement style="TableRow" x="0" y="0" width="130" height="20" uuid="66666666-6666-6666-6666-666666666666"/>
+                <textFieldExpression><![CDATA[$F{moisPrelevementMensualite}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="TableRow" x="130" y="0" width="150" height="20" uuid="77777777-7777-7777-7777-777777777777"/>
+                <textFieldExpression><![CDATA[$F{employe}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="TableRow" x="280" y="0" width="130" height="20" uuid="88888888-8888-8888-8888-888888888888"/>
+                <textFieldExpression><![CDATA[$F{institution}]]></textFieldExpression>
+            </textField>
+            <textField pattern="#,##0.00">
+                <reportElement style="TableRow" x="410" y="0" width="145" height="20" uuid="99999999-9999-9999-9999-999999999999"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle" />
+                <textFieldExpression><![CDATA[$F{montantPrelevementMensualite}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <!-- SOMMAIRE -->
+    <summary>
+        <band height="30">
+            <staticText>
+                <reportElement x="280" y="5" width="130" height="20" uuid="aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaaa"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Total :]]></text>
+            </staticText>
+            <textField pattern="#,##0.00">
+                <reportElement x="410" y="5" width="145" height="20" uuid="bbbbbbb2-bbbb-bbbb-bbbb-bbbbbbbbbbbb"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{totalPrelevementMensualite}]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+
+</jasperReport>

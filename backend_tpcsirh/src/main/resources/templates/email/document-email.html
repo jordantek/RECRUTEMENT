@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Partagé</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #ffffff;
+            margin: 30px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #1a73e8;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .header h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 30px;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .content h4 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .document-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .document-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .info-item {
+            margin-bottom: 8px;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #495057;
+        }
+        .info-value {
+            color: #212529;
+        }
+        .attachment-notice {
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .security-notice {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .footer {
+            background-color: #f4f4f7;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- En-tête -->
+    <div class="header">
+        <h3 th:text="${companyName}">Nom de l'entreprise</h3>
+        <p>Service des Ressources Humaines</p>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="content">
+        <h4>📎 Document Partagé</h4>
+
+        <p>Bonjour,</p>
+
+        <p>Vous trouverez ci-joint un document important partagé par le service RH.</p>
+
+        <!-- Carte d'information du document -->
+        <div class="document-card">
+            <h5 style="margin-top: 0; color: #1a73e8;">Informations du Document</h5>
+            <div class="document-info">
+                <div class="info-item">
+                    <span class="info-label">📄 Document :</span>
+                    <span class="info-value" th:text="${documentName}">Nom du document</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">📁 Catégorie :</span>
+                    <span class="info-value" th:text="${documentType}">Type de document</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">👤 Employé :</span>
+                    <span class="info-value" th:text="${employeeName}">Nom de l'employé</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">🔢 Matricule :</span>
+                    <span class="info-value" th:text="${employeeMatricule}">Matricule</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Message personnalisé -->
+        <div th:if="${customMessage}" style="background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0;">
+            <strong>💬 Message :</strong>
+            <p th:text="${customMessage}" style="margin: 5px 0 0 0;"></p>
+        </div>
+
+        <!-- Section QR Code si disponible -->
+        <div th:if="${hasQRCode}" class="qr-section">
+            <h5 style="margin-top: 0; color: #1a73e8;">🔒 Vérification d'Authenticité</h5>
+            <p>Ce document possède un QR Code pour vérification de son authenticité.</p>
+            <img th:if="${qrCodePath}" th:src="${qrCodePath}" alt="QR Code de vérification" style="max-width: 150px; margin: 10px 0;">
+        </div>
+
+        <!-- Notice de pièce jointe -->
+        <div class="attachment-notice">
+            <strong>📎 Pièce Jointe :</strong>
+            <p>Le document "<span th:text="${documentName}">Nom du document</span>" est attaché à cet email.</p>
+        </div>
+
+        <!-- Notice de sécurité -->
+        <div class="security-notice">
+            <strong>🔒 Sécurité :</strong>
+            <p>Ce document contient des informations confidentielles. Merci de le conserver en lieu sûr et de ne pas le partager avec des personnes non autorisées.</p>
+        </div>
+
+        <p>Pour toute question concernant ce document, veuillez contacter le service RH à
+            <a th:href="'mailto:' + ${hrEmail}" style="color: #1a73e8;" th:text="${hrEmail}">rh@entreprise.com</a>.
+        </p>
+
+        <p>Cordialement,<br>
+            <strong>L'équipe des Ressources Humaines</strong><br>
+            <span th:text="${companyName}">Entreprise</span></p>
+    </div>
+
+    <!-- Pied de page -->
+    <div class="footer">
+        <p>© 2025 - <span th:text="${companyName}">Entreprise</span>. Tous droits réservés.</p>
+        <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+        <p style="font-size: 11px; color: #868e96;">
+            ID Document: <span th:text="${documentId}">ID</span> |
+            <!-- CORRECTION ICI aussi -->
+            Date d'envoi: <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy à HH:mm')}">Date</span>
+        </p>
+    </div>
+</div>
+</body>
+</html>

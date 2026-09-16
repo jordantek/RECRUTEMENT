@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email de Bienvenue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #ffffff;
+            margin: 30px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #f4f4f7;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            max-height: 60px;
+        }
+        .content {
+            padding: 30px;
+            color: #333333;
+        }
+        .content h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .header h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1a73e8;
+        }
+
+        .content p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .credentials {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 15px 0;
+        }
+        .button {
+            display: inline-block;
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .footer {
+            background-color: #f4f4f7;
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header avec logo -->
+    <div class="header">
+        <h3> [[${companyName}]]</h3>
+<!--        <img th:if="${logoPath != null}" th:src="${logoPath}" alt="Logo Entreprise" width="100">-->
+    </div>
+
+    <!-- Contenu dynamique -->
+    <div class="content">
+        <h4>Bienvenue  [[${employeeName}]] !</h4>
+        <p>Votre compte a été créé avec succès. Vous pouvez dès maintenant accéder au portail employé pour consulter vos informations et gérer vos tâches.</p>
+
+        <div class="credentials">
+            <p><strong>Nom d'utilisateur :</strong> [[${username}]]</p>
+            <p><strong>Mot de passe :</strong> [[${password}]]</p>
+        </div>
+
+        <p>Pour vous connecter, cliquez sur le bouton ci-dessous :</p>
+        <a th:href="${loginUrl}" class="button">Accéder au portail</a>
+
+        <p>Pour votre sécurité, nous vous recommandons de <strong>changer votre mot de passe dès votre première connexion</strong>.</p>
+
+        <p>Si vous avez des questions, n’hésitez pas à contacter le service RH à <a th:href="'mailto:' + ${hrEmail}">[[${hrEmail}]]</a>.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025 - [[${companyName}]]. Tous droits réservés.</p>
+    </div>
+</div>
+</body>
+</html>

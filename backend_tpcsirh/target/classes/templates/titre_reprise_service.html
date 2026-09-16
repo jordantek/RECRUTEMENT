@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Titre de Reprise de Service</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #000;
+        }
+        .header {
+            text-align: center;
+            font-weight: bold;
+            font-size: 14pt;
+            text-decoration: underline;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .field {
+            margin-bottom: 10px;
+        }
+        .field-label {
+            display: inline-block;
+            width: 200px;
+        }
+        .field-value {
+            display: inline-block;
+            border-bottom: 1px dotted #000;
+            min-width: 300px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        .signature-section {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .signature-box {
+            width: 45%;
+            text-align: center;
+        }
+        .qr-code {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="qr-code" th:if="${qrCode}">
+    <img th:src="${qrCode}" alt="QR Code" style="width: 100%; height: 100%;"/>
+</div>
+
+<div class="header">
+    TITRE DE REPRISE DE SERVICE
+</div>
+
+<p style="font-style: italic; margin-bottom: 20px;">
+</p>
+
+<div class="section">
+    <div class="field">
+        <span class="field-label">Nom et Prénoms :</span>
+        <span class="field-value" th:text="${nomPrenom}"></span>
+    </div>
+    <div class="field">
+        <span class="field-label">Matricule :</span>
+        <span class="field-value" th:text="${matricule}"></span>
+    </div>
+</div>
+
+<div class="section">
+    <div class="field">
+        <span class="field-label">Département :</span>
+        <span class="field-value" th:text="${departement}"></span>
+    </div>
+    <div class="field">
+        <span class="field-label">Fonction :</span>
+        <span class="field-value" th:text="${fonction}"></span>
+    </div>
+</div>
+
+<div class="section">
+    <div class="field">
+        <span class="field-label">Nature du congé :</span>
+        <span class="field-value" th:text="${natureCongé}"></span>
+    </div>
+</div>
+
+<div class="section">
+    <div class="field">
+        <span class="field-label">Date de départ en congé :</span>
+        <span class="field-value" th:text="${#temporals.format(dateDepartCongé, 'dd/MM/yyyy')}"></span>
+    </div>
+    <div class="field">
+        <span class="field-label">Date de reprise prévue :</span>
+        <span class="field-value" th:text="${#temporals.format(dateReprisePrevue, 'dd/MM/yyyy')}"></span>
+    </div>
+    <div class="field">
+        <span class="field-label">Date de reprise effective :</span>
+        <span class="field-value" th:text="${#temporals.format(dateRepriseEffective, 'dd/MM/yyyy')}"></span>
+    </div>
+</div>
+
+<p style="margin-top: 30px; font-weight: bold;">
+    Au cours du congé, j'ai été sollicité pendant les jours ci-après :
+</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Dates</th>
+        <th>Motif de la sollicitation</th>
+        <th>Heures d'arrivée</th>
+        <th>Heures de départ</th>
+        <th>Nombre d'heures ou jours à récupérer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${sollicitations == null or #lists.isEmpty(sollicitations)}">
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr th:each="sollicitation : ${sollicitations}">
+        <td th:text="${sollicitation.date}"></td>
+        <td th:text="${sollicitation.motif}"></td>
+        <td th:text="${sollicitation.heureArrivee}"></td>
+        <td th:text="${sollicitation.heureDepart}"></td>
+        <td th:text="${sollicitation.nombreHeures}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="signature-section">
+    <div class="signature-box">
+        <p>Cotonou, le <span th:text="${#temporals.format(dateSignature, 'dd/MM/yyyy')}"></span></p>
+        <p style="margin-top: 60px; font-weight: bold;">Le titulaire</p>
+    </div>
+    <div class="signature-box">
+        <p>&nbsp;</p>
+        <p style="margin-top: 60px; font-weight: bold;">Le responsable hiérarchique</p>
+    </div>
+</div>
+</body>
+</html>

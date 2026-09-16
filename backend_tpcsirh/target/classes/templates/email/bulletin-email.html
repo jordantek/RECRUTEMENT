@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bulletin de Paie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #ffffff;
+            margin: 30px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #f4f4f7;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            max-height: 60px;
+        }
+        .header h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #1a73e8;
+        }
+        .content {
+            padding: 30px;
+            color: #333333;
+        }
+        .content h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+        .content p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .footer {
+            background-color: #f4f4f7;
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header avec logo -->
+    <div class="header">
+        <h3>[[${companyName}]]</h3>
+        <!-- Décommente si tu veux afficher le logo -->
+        <!-- <img th:if="${logoPath != null}" th:src="${logoPath}" alt="Logo Entreprise" width="100"> -->
+    </div>
+
+    <!-- Contenu dynamique -->
+    <div class="content">
+        <h4>Bonjour [[${employeeName}]],</h4>
+
+        <p>Veuillez trouver ci-joint votre <strong>bulletin de paie</strong> pour le mois de
+            <strong>[[${mois}]]</strong>.</p>
+
+        <p>Nous vous invitons à le consulter attentivement.
+            En cas de question, n’hésitez pas à contacter le service RH.</p>
+
+        <p>Cordialement,<br/>
+            L’équipe [[${companyName}]].</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025 - [[${companyName}]]. Tous droits réservés.</p>
+    </div>
+</div>
+</body>
+</html>

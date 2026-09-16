@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Convention de Stage Professionnel</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm 2cm;
+        }
+
+        body {
+            font-family: "Arial", "Helvetica", sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        .letterhead {
+            width: 20%;
+            height: auto;
+            max-height: 4cm;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 1cm;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+
+        .sub-header {
+            font-size: 9pt;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .intro-text {
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+
+        .party-section {
+            margin-bottom: 20px;
+        }
+
+        .party-title {
+            font-weight: bold;
+            font-size: 12pt;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            font-style: italic;
+        }
+
+        .info-line {
+            margin: 5px 0;
+            text-align: left;
+        }
+
+        .info-line strong {
+            display: inline-block;
+            width: 200px;
+            font-weight: bold;
+        }
+
+        .field-value {
+            font-weight: normal;
+        }
+
+        .article {
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+
+        .article h4 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            text-decoration: underline;
+        }
+
+        .article p {
+            margin: 8px 0;
+            text-align: justify;
+            text-indent: 0;
+        }
+
+        .signatures {
+            margin-top: 40px;
+            page-break-inside: avoid;
+        }
+
+        .signatures table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .signatures td {
+            vertical-align: top;
+            padding: 10px;
+            width: 50%;
+        }
+
+        .signature-left {
+            text-align: left;
+        }
+
+        .signature-right {
+            text-align: right;
+        }
+
+        .signature-space {
+            height: 60px;
+            border-bottom: 1px solid #ccc;
+            margin: 20px 0 10px 0;
+        }
+
+        .date-field {
+            display: inline-block;
+            min-width: 120px;
+            border-bottom: 1px solid #000;
+            text-align: center;
+        }
+
+        .amount-highlight {
+            font-weight: bold;
+        }
+
+        .signature-mention {
+            font-style: italic;
+            font-size: 10pt;
+            margin-bottom: 5px;
+        }
+
+        .date-location {
+            text-align: left;
+            margin: 30px 0;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+<img th:src="${enteteImage}" alt="En-tête" class="letterhead"/>
+
+<div class="header">
+    <h2>CONVENTION DE STAGE</h2>
+    <div class="sub-header">(Document officiel - République du Bénin)</div>
+</div>
+<p class="intro-text">La présente convention règle les rapports entre :</p>
+<div class="party-section">
+    <div class="party-title">L'ENTREPRISE</div>
+    <div class="info-line">
+        <strong>NOM :</strong>
+        <span class="field-value" th:text="${entreprise}">SOCIETE/ENTREPRISE SARL</span>
+    </div>
+    <div class="info-line">
+        <strong>ADRESSE :</strong>
+        <span class="field-value" th:text="${adresseEntreprise}">..........BP......COTONOU</span>
+    </div>
+    <div class="info-line">
+        <strong>TÉL / FAX :</strong>
+        <span class="field-value" th:text="${telEntreprise}">(229)...................- Fax .................</span>
+    </div>
+    <div class="info-line">
+        <strong>SIÈGE SOCIAL :</strong>
+        <span class="field-value" th:text="${adresseEntreprise}">.....................................................</span>
+    </div>
+    <div class="info-line">
+        <strong>FORME JURIDIQUE :</strong>
+        <span class="field-value" th:text="${entreprise}">SARL au Capital de ..................... FCFA</span>
+    </div>
+    <div class="info-line">
+        <strong>REPRÉSENTÉE :</strong>
+        <span class="field-value">légalement par <span th:text="${dgEntreprise}">Monsieur [Nom et Prénom du DG]</span></span>
+    </div>
+    <div class="info-line">
+        <strong>FONCTION :</strong>
+        <span class="field-value" th:text="${fonctionRepresentant}">Directeur Général</span>
+    </div>
+    <p style="margin: 15px 0; text-align: center; font-weight: bold;">D'une part,</p>
+</div>
+<div class="party-section">
+    <div class="party-title">LE STAGIAIRE</div>
+    <div class="info-line">
+        <strong>NOM ET PRÉNOM(S) :</strong>
+        <span class="field-value" th:text="${employe}">.....................................</span>
+    </div>
+    <div class="info-line">
+        <strong>DATE ET LIEU DE NAISSANCE :</strong>
+        <span class="field-value">
+            <span th:text="${dateNaissanceStagiaire}">..................</span> à
+            <span th:text="${lieuNaissanceStagiaire}">..................</span>
+        </span>
+    </div>
+    <div class="info-line">
+        <strong>NIVEAU D'ÉTUDE :</strong>
+        <span class="field-value" th:text="${niveauEtude}">.....................................................................</span>
+    </div>
+    <div class="info-line">
+        <strong>N° PIÈCE D'IDENTITÉ :</strong>
+        <span class="field-value" th:text="${numeroPieceIdentite}">................................................................</span>
+    </div>
+    <div class="info-line">
+        <strong>ADRESSE COMPLÈTE :</strong>
+        <span class="field-value" th:text="${adresseEmploye}">................................................................</span>
+    </div>
+    <p style="margin: 15px 0; text-align: center; font-weight: bold;">D'autre part</p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE I : Objet et domaine du stage</h4>
+    <p>
+        <span th:text="${genre}">Monsieur</span> <strong><span th:text="${employe}">.............................</span></strong>
+        est admis à compter du <span class="date-field" th:text="${#temporals.format(dateEffet, 'dd/MM/yyyy')}">__/__/____</span> à suivre, sous le contrôle de ses supérieurs hiérarchiques,
+        un stage professionnel dans les services administratifs et/ou opérationnels de
+        <span th:text="${entreprise}">SOCIETE/ENTREPRISE</span> en vue de parfaire la pratique du métier
+        d'<span th:text="${fonctionEmploye}">..............................</span>
+    </p>
+    <p>
+        Le stagiaire a obligatoirement la qualité de stagiaire et non de salarié pendant la durée du stage.
+        Il aura pour affectation principale :
+        <span th:text="${fonctionEmploye}"></span>.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE II : Durée du stage</h4>
+    <p>
+        La présente convention est conclue pour une durée de
+        <span class="date-field" th:text="${dureeContrat}"></span> renouvelables.
+        La période de stage s'étend du <span class="date-field" th:text="${#temporals.format(dateEffet, 'dd/MM/yyyy')}">__/__/____</span>
+        au <span class="date-field" th:text="${#temporals.format(dateFin, 'dd/MM/yyyy')}">__/__/____</span>.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE III : Indemnités de stage</h4>
+    <p>
+        <span th:text="${genre}">Monsieur</span> <span th:text="${employe}">.</span>
+        accepte de ne bénéficier de la part de <span th:text="${entreprise}">SOCIETE/ ENTREPRISE</span>
+        d'aucun avantage en nature et/ou en espèces sous quelque forme que ce soit à l'occasion du présent stage.
+    </p>
+    <p>
+        Toutefois, <span th:text="${entreprise}">SOCIETE/ ENTREPRISE</span> se réserve le droit d'allouer
+        une indemnité forfaitaire mensuelle de <span class="amount-highlight" th:text="${salaireBrutContrat}"></span>
+        FCFA au profit du stagiaire pour couvrir ses frais de déplacement et de restauration
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE IV : Discipline</h4>
+    <p>
+        Durant le stage, <span th:text="${genre}">Monsieur</span>
+        <span th:text="${employe}">.......................................</span>
+        sera soumis à la discipline de l'Entreprise, et sera fonctionnellement placé sous l'autorité du Représentant de celle-ci.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE V : Clause spécifique</h4>
+    <p>
+        Les parties au présent contrat conviennent d'accord parties que le fait d'offrir un stage à
+        <span th:text="${genre}">Monsieur</span> <span th:text="${employe}">.................................</span>
+        n'implique pas l'engagement ni la promesse de <span th:text="${entreprise}">SOCIETE/ ENTREPRISE</span>
+        de réserver pendant ou à l'issue dudit stage un emploi rémunéré au stagiaire.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE VI : Rupture de la convention</h4>
+    <p>
+        Il peut être mis fin d'office sans préavis au présent contrat de stage en cas de manque d'intérêt et/ou de faute
+        constatée à l'occasion du stage professionnel ou de manquement à la discipline générale sur le lieu de travail.
+        La notification de la rupture est faite par courrier.
+    </p>
+</div>
+
+<div class="article">
+    <h4>ARTICLE VII : Engagements du stagiaire</h4>
+    <p>
+        Le stagiaire s'engage envers l'Entreprise à respecter les dispositions de la présente convention.
+    </p>
+    <p>
+        Par ailleurs, le stagiaire s'engage, par la signature du présent contrat de stage, à cesser toute activité
+        au sein de <span th:text="${entreprise}">SOCIETE/ ENTREPRISE</span> à l'expiration de la période de stage
+        telle que convenue à l'article 2 de la présente convention.
+    </p>
+</div>
+
+<div class="date-location">
+    <p>
+        Fait à Cotonou, le  <span class="date-field"
+                                  th:text="${dateSignature != null ? #temporals.format(dateSignature, 'dd/MM/yyyy') : #temporals.format(#temporals.createNow(), 'dd/MM/yyyy')}">__/__/____</span>
+    </p>
+</div>
+
+<div class="signatures">
+    <table>
+        <tr>
+            <td class="signature-left">
+                <strong>Le stagiaire</strong><br/>
+                <div class="signature-mention">" Lu et approuvé"</div>
+                <div class="signature-space"></div>
+                <span style="text-decoration: underline;" th:text="${employe}">Nom & Prénom</span>
+            </td>
+            <td class="signature-right">
+                <strong>Le Directeur Général</strong><br/>
+                <div class="signature-space"></div>
+                <span th:text="${nomPrenomSignataire}"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="Contrat_CDI" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="40" whenNoDataType="AllSectionsNoDetail" uuid="e2f2a3e1-8d1b-4b4a-9e4f-22c1f2f2a3e1">
+
+    <!-- Ensure long text is fully printed -->
+    <property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+    <property name="net.sf.jasperreports.text.truncate.at.char" value="false"/>
+
+    <parameter name="datePattern" class="java.lang.String">
+        <defaultValueExpression><![CDATA["dd/MM/yyyy"]]></defaultValueExpression>
+    </parameter>
+
+    <!-- Fields mapped from your JRBeanCollectionDataSource (ContratCdiDTO) -->
+    <field name="raisonSociale" class="java.lang.String"/>
+    <field name="adresseEntreprise" class="java.lang.String"/>
+    <field name="telephoneEntreprise" class="java.lang.String"/>
+    <field name="emailEntreprise" class="java.lang.String"/>
+    <field name="logoEntreprise" class="java.lang.String"/>
+    <field name="libelleTitre" class="java.lang.String"/>
+    <field name="nomPrenomEmploye" class="java.lang.String"/>
+    <field name="sexeEmploye" class="java.lang.String"/>
+    <field name="dateNaissance" class="java.util.Date"/>
+    <field name="lieuNaissance" class="java.lang.String"/>
+    <field name="situationMatrimoniale" class="java.lang.String"/>
+    <field name="adresseEmploye" class="java.lang.String"/>
+    <field name="telephoneEmploye" class="java.lang.String"/>
+    <field name="emailEmploye" class="java.lang.String"/>
+    <field name="professionEmploye" class="java.lang.String"/>
+    <field name="libelleCategorieEmploye" class="java.lang.String"/>
+    <field name="dateDebutContrat" class="java.util.Date"/>
+    <field name="dateFinContrat" class="java.util.Date"/>
+    <field name="dureeContrat" class="java.lang.String"/>
+    <field name="libellePoste" class="java.lang.String"/>
+    <field name="salaireBaseContrat" class="java.math.BigDecimal"/>
+    <field name="montantPrimeIndemnite" class="java.math.BigDecimal"/>
+    <field name="salaireBrutContrat" class="java.math.BigDecimal"/>
+    <field name="securiteSociale" class="java.lang.String"/>
+    <field name="directionEnregistrementContrat" class="java.lang.String"/>
+    <field name="directeurDepartementalTravail" class="java.lang.String"/>
+    <field name="nomPrenomSignataire" class="java.lang.String"/>
+    <field name="numeroRegistreCommerce" class="java.lang.String"/>
+    <field name="nationaliteEmploye" class="java.lang.String"/>
+    <field name="nombreJourConge" class="java.lang.Integer"/>
+    <field name="coefficientCalculConge" class="java.lang.Double"/>
+    <field name="nombreMoisPeriodeEssai" class="java.lang.String"/>
+
+    <!-- Simple date/number formats -->
+    <detail>
+        <band height="100" splitType="Stretch">
+
+            <!-- En-tête / Titre -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="20" uuid="c1a1b6c1-1b4c-4a3f-8b6a-f1f1a1b6c1a2"/>
+                <textElement textAlignment="Center">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    ($F{libelleTitre} != null && !$F{libelleTitre}.isEmpty()
+                        ? $F{libelleTitre}
+                        : "CONTRAT DE TRAVAIL A DUREE INDETERMINÉE")
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- Préambule + Parties -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="80" uuid="b2d2e7b2-2d7e-4d9f-a2b3-2222e7b2d7e4"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "(sur papier à entête de l’entreprise)
+
+" +
+                    "ENTRE LES SOUSSIGNÉS
+
+" +
+                    "EMPLOYEUR
+
+" +
+                    "RAISON SOCIALE : " + ($F{raisonSociale} == null ? "" : $F{raisonSociale}) + "
+" +
+                    "SIÈGE SOCIAL : " + ($F{adresseEntreprise} == null ? "" : $F{adresseEntreprise}) + "
+" +
+                    "ADRESSE : " + ($F{adresseEntreprise} == null ? "" : $F{adresseEntreprise}) + "
+
+" +
+                    "REPRESENTÉE : légalement par " + ($F{nomPrenomSignataire} == null ? "Monsieur/Madame [Nom et Prénom du Directeur Général]" : $F{nomPrenomSignataire}) + "
+" +
+                    "FONCTION : Directeur Général
+
+" +
+                    "CI-APRÈS DÉSIGNÉ « L’EMPLOYEUR » D’UNE PART ET,
+
+" +
+                    "EMPLOYÉ
+
+" +
+                    "NOM ET PRÉNOMS : " + ($F{nomPrenomEmploye} == null ? "" : $F{nomPrenomEmploye}) + "
+" +
+                    "DATE ET LIEU DE NAISSANCE : " +
+                        ($F{dateNaissance} == null ? "" : new java.text.SimpleDateFormat($P{datePattern}).format($F{dateNaissance})) +
+                        " à " + ($F{lieuNaissance} == null ? "" : $F{lieuNaissance}) + "
+" +
+                    "NATIONALITÉ : " + ($F{nationaliteEmploye} == null ? "" : $F{nationaliteEmploye}) + "
+" +
+                    "RÉSIDENCE HABITUELLE : " + ($F{adresseEmploye} == null ? "" : $F{adresseEmploye}) + "
+" +
+                    "SITUATION DE FAMILLE : " + ($F{situationMatrimoniale} == null ? "" : $F{situationMatrimoniale}) + "
+" +
+                    "DIPLÔME REQUIS POUR L’EMPLOI OCCUPÉ : " + ($F{professionEmploye} == null ? "" : $F{professionEmploye}) + "
+
+" +
+                    "CI-APRÈS DÉSIGNÉ « L’EMPLOYÉ » D’AUTRE PART
+
+" +
+                    "Qui déclare être libre de tout engagement, il a été d’un commun accord, convenu de ce qui suit :"
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 1 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="60" uuid="a1111111-1111-1111-1111-111111111111"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 1 : CONDITIONS GÉNÉRALES D’ENGAGEMENT
+" +
+                    "Le présent contrat est régi par la loi n° 98-004 du 27 Janvier 1998 portant Code du Travail, " +
+                    "les textes modificatifs subséquents et ceux pris pour son application ; la loi n° 2017-05 du 29 Août 2017 " +
+                    "fixant les conditions et la procédure d’embauche, de placement de la main-d’œuvre et de résiliation du contrat de travail " +
+                    "en République du Bénin ; la loi n° 98-019 du 21 Mars 2003 portant Code de Sécurité Sociale en République du Bénin et " +
+                    "la Loi n° 2007-02 du 26 Mars 2007 portant modification des dispositions des articles 10, 89, 93, 94, 95 et 101 de la loi n°98-019 " +
+                    "du 21 mars 2003 portant Code de Sécurité Sociale en République du Bénin ; la Convention Collective Générale du Travail du 30 déc. 2005."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 2 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="60" uuid="a2222222-2222-2222-2222-222222222222"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 2 : NATURE DU CONTRAT
+" +
+                    "Le présent contrat est conclu pour une durée " + ($F{dureeContrat} == null ? "indéterminée" : $F{dureeContrat}) +
+                    " et prend effet à compter du " + ($F{dateDebutContrat} == null ? "…………….." : new java.text.SimpleDateFormat($P{datePattern}).format($F{dateDebutContrat})) + ".
+" +
+                    "À ce titre, il est chargé principalement de :
+" +
+                    ($F{libellePoste} == null ? "……………………." : $F{libellePoste}) + "
+" +
+                    "…………………….
+" +
+                    "……………………."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 3 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="60" uuid="a3333333-3333-3333-3333-333333333333"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 3 : FONCTION
+" +
+                    "L’employé(e) exercera sous le contrôle de ses supérieurs hiérarchiques, les fonctions de " +
+                    ($F{libellePoste} == null ? "………………………………………………………………………………" : $F{libellePoste}) + ".
+" +
+                    "Il s’engage à s’acquitter avec zèle et fidélité des travaux ou missions qui lui seront confiés et à se rendre en tous lieux où l’employeur aura besoin de ses services.
+" +
+                    "Le présent contrat est valable en République du Bénin."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 4 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="50" uuid="a4444444-4444-4444-4444-444444444444"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 4 : DURÉE HEBDOMADAIRE DE TRAVAIL
+" +
+                    "La durée et les horaires de travail sont fixés par l’employeur dans le respect des dispositions légales.
+" +
+                    "Le salarié est tenu d’accomplir les heures supplémentaires qui lui sont prescrites par la hiérarchie dont il relève."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 5 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="60" uuid="a5555555-5555-5555-5555-555555555555"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 5 : PÉRIODE D’ESSAI
+" +
+                    "La période allant du …..……… au ………….. sera considérée comme période d’essai pendant laquelle le présent contrat de travail " +
+                    "peut être résilié par chacune des parties. Elle est renouvelable une fois.
+" +
+                    "En cas de rupture par l’une ou l’autre des parties, aucune indemnité ne sera due que celle compensatrice de congé payé au prorata du temps effectué à la charge de l’employeur."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 6 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="40" uuid="a6666666-6666-6666-6666-666666666666"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 6 : LIEU DE TRAVAIL
+" +
+                    "Le travail s’effectuera à Cotonou. Toutefois, l’employeur se réserve la possibilité d’affecter le salarié en tout autre lieu où besoin sera."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 7 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="120" uuid="a7777777-7777-7777-7777-777777777777"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 7 : VOYAGE- BAGAGES- TRANSPORTS
+" +
+                    "Dans les conditions prévues à l’article 174 du Code du travail, le travailleur a droit au transport gratuit pour lui, son conjoint et ses enfants mineurs " +
+                    "vivant habituellement avec lui du lieu d’emploi au lieu de résidence habituelle et du lieu de résidence habituelle au lieu d’emploi :
+" +
+                    "- En cas de résiliation, lorsque l’employé a acquis droit au congé ;
+" +
+                    "- En cas de résiliation du contrat due à un cas de force majeure ;
+" +
+                    "- En cas de congé normal.
+" +
+                    "Si le contrat est résilié pour faute lourde de l’agent ou de son fait, le montant des frais de transport, aller et retour incombant à l’employeur est proportionnel au temps de service du travailleur."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 8 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="40" uuid="a8888888-8888-8888-8888-888888888888"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 8 : RÉMUNÉRATION
+" +
+                    "Le salaire brut mensuel actuel de Madame/Monsieur " +
+                    ($F{nomPrenomEmploye} == null ? "………………………….." : $F{nomPrenomEmploye}) +
+                    " est fixé à la somme de FCFA " +
+                    ($F{salaireBrutContrat} == null ? "………………………………" : new java.text.DecimalFormat("#,##0").format($F{salaireBrutContrat})) +
+                    " (………………………………….)."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 9 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="40" uuid="a9999999-9999-9999-9999-999999999999"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 9 : SÉCURITÉ SOCIALE
+" +
+                    "L’employeur s’engage à affilier l’Agent à la " + ($F{securiteSociale} == null ? "Caisse Nationale de Sécurité Sociale" : $F{securiteSociale}) +
+                    " et à y verser régulièrement les cotisations."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 10 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="80" uuid="b1010101-1010-1010-1010-101010101010"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 10 : SOINS MÉDICAUX ET HOSPITALISATION
+" +
+                    "Le travailleur bénéficie à concurrence de 100% des frais de consultation et de soins d’urgence donnés par le médecin de l’Entreprise " +
+                    "dans les conditions prévues par le règlement en vigueur et conformément à l’article 73 de la Convention Collective Générale du Travail.
+" +
+                    "En cas d’accident survenu au cours ou à l’occasion du service, les droits et obligations des parties seront réglés conformément aux textes en vigueur en la matière."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 11 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="80" uuid="b1111111-1111-1111-1111-111111111112"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 11 : CONDITIONS D’EXECUTION DU CONTRAT
+" +
+                    "Monsieur/Madame " + ($F{nomPrenomEmploye} == null ? "……………………………………." : $F{nomPrenomEmploye}) +
+                    " s’engage à observer toutes les instructions et consignes particulières de travail qui lui seront données et à respecter une stricte obligation " +
+                    "sur tout ce qui concerne l’activité de l’entreprise.
+
+" +
+                    "Monsieur/Madame " + ($F{nomPrenomEmploye} == null ? "…………………………………….." : $F{nomPrenomEmploye}) +
+                    " devra faire connaître à l’entreprise sans délai toute modification postérieure à son engagement qui pourrait intervenir dans son état civil, sa situation familiale et son adresse."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 12 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="100" uuid="b1212121-1212-1212-1212-121212121212"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 12 : MATÉRIELS
+" +
+                    "Il sera mis à la disposition de Monsieur/Madame " + ($F{nomPrenomEmploye} == null ? "………………………….." : $F{nomPrenomEmploye}) +
+                    " divers documents techniques et juridiques ou logiciels, propriété exclusive de la société qui ne pourront être dupliqués sous quelque forme que ce soit. " +
+                    "Monsieur/Madame " + ($F{nomPrenomEmploye} == null ? "…………………………" : $F{nomPrenomEmploye}) +
+                    " ne doit les utiliser qu’à titre professionnel et les laisser sur les lieux de travail. Il est garant de leur maintien en parfait état.
+
+" +
+                    "À cet égard, le matériel restant la propriété de la société, un contrôle permanent est exercé par tout moyen sur son utilisation."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 14 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="60" uuid="b1414141-1414-1414-1414-141414141414"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 14 : CONGÉ PAYÉ
+" +
+                    "Le travailleur a droit au congé payé à la charge de l’employeur à raison de deux (2) jours ouvrables par mois de service effectif, soit 24 jours ouvrables par an.
+" +
+                    "L’allocation de congé sera au moins égale à un (1) mois de salaire brut."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 15 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="60" uuid="b1515151-1515-1515-1515-151515151515"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 15 : RÉSILIATION
+" +
+                    "Le présent contrat sera rompu sous réserve de l’observation d’une période de préavis conformément aux dispositions de l’article 53 du code du travail.
+
+" +
+                    "Le présent contrat peut être aussi rompu sans préavis en cas de faute lourde du travailleur ou de l’employeur sous réserve de l’appréciation de la juridiction compétente en ce qui concerne la gravité de la faute."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 16 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="80" uuid="b1616161-1616-1616-1616-161616161616"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 16 : CLAUSE D’OBLIGATION DE DISCRÉTION
+" +
+                    "Sauf accord des parties, l’employé s’engage, à ne communiquer à qui que ce soit, pendant la durée de son contrat de travail et après sa rupture, " +
+                    "des informations et documents sur les méthodes, l’organisation et le fonctionnement de l’entreprise et à faire preuve d’une discrétion absolue " +
+                    "sur l’ensemble des données ou informations dont il pourrait avoir connaissance, directement ou indirectement que celles-ci soient ou non en rapport avec ses fonctions."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 19 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="100" uuid="b1919191-1919-1919-1919-191919191919"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 19 : CLAUSE DE NON CONCURRENCE
+" +
+                    "L’employé s’interdit de divulguer, pendant ou après son emploi, tous renseignements de nature confidentielle qu’il aurait pu recueillir dans l’exercice de sa fonction. " +
+                    "Il s’engage à consacrer tout son temps de travail, dans la limite des règlements en vigueur, au service de l’employeur et s’interdit sans autorisation écrite de l’employeur " +
+                    "même en temps de repos, toute activité professionnelle susceptible de concurrencer son employeur ou de nuire à l’exécution normale des services convenus."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 20 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="60" uuid="b2020202-2020-2020-2020-202020202020"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 20 : CLAUSE ATTRIBUTIVE DE JURIDICTION
+" +
+                    "Le tribunal compétent pour connaître de tous différends liés à l’exécution du présent contrat sera le tribunal du lieu de travail " +
+                    "ou celui de la résidence habituelle du travailleur."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 21 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="80" uuid="b2121212-2121-2121-2121-212121212121"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 21 : DIVERS
+" +
+                    "Pour tout ce qui n’est pas précisé au présent contrat, les parties s’en remettent à la convention collective générale ou à ses annexes " +
+                    "ou à défaut, aux dispositions légales et réglementaires en vigueur, ou encore aux usages locaux."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- ARTICLE 22 -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="40" uuid="b2222222-2222-2222-2222-222222222223"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "ARTICLE 22 : DATE DE PRISE D’EFFET
+" +
+                    "Le présent contrat prend effet à compter du " +
+                    ($F{dateDebutContrat} == null ? "……………………………………." : new java.text.SimpleDateFormat($P{datePattern}).format($F{dateDebutContrat})) + "."
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- Signatures -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="120" uuid="b2323232-2323-2323-2323-232323232323"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "Fait en trois (3) exemplaires originaux
+
+" +
+                    "Cotonou, le " + ($F{dateDebutContrat} == null ? "………………………….." : new java.text.SimpleDateFormat($P{datePattern}).format($F{dateDebutContrat})) + "
+
+" +
+                    "L’Employé							Pour l’Entreprise
+" +
+                    "Signature précédée de la mention “Lu et approuvé”
+
+
+" +
+                    "Nom et Prénom(s) de l’employé : " + ($F{nomPrenomEmploye} == null ? "" : $F{nomPrenomEmploye}) + "
+" +
+                    "Nom et Prénom(s) du DG : " + ($F{nomPrenomSignataire} == null ? "" : $F{nomPrenomSignataire})
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- Visa / Enregistrement -->
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="0" width="515" height="120" uuid="b2424242-2424-2424-2424-242424242424"/>
+                <textElement>
+                    <font size="11"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "VISÉ ET ENREGISTRÉ SOUS LE
+" +
+                    "NUMÉRO ………………/ " + ($F{directionEnregistrementContrat} == null ? "MTFP/DGT/DRP-DS/SRI" : $F{directionEnregistrementContrat}) +
+                    " DU ……………………
+
+" +
+                    ($F{directeurDepartementalTravail} == null ? "LA DIRECTRICE GENERALE DU TRAVAIL
+
+Mireille Constance LEGBA ADANKON" : $F{directeurDepartementalTravail})
+                ]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </detail>
+</jasperReport>

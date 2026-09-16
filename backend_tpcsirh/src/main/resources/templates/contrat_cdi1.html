@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Modèle de CDI</title>
+    <style>
+        body {
+            font-family: Corbel, Arial, sans-serif;
+            font-size: 12pt;
+            margin: 25mm 20mm 25mm 20mm; /* marges impression */
+            line-height: 1.15;
+
+        }
+
+        /* Header (affiché une seule fois en haut du document) */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #000;
+            padding: 10px 0;
+            margin-bottom: 20px; /* espace sous le header */
+        }
+
+        header img {
+            max-height: 70px;
+        }
+
+        header .company-info {
+            text-align: right;
+            font-size: 11pt;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        p {
+            margin: 6px 0;
+        }
+
+        .small {
+            font-size: 10pt;
+        }
+
+        /* Plus besoin de marges spéciales pour main */
+        main {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img th:src="@{/images/logo.png}" alt="Logo de l'entreprise"/>
+    <div class="company-info">
+        <strong th:text="${entreprise.nom}">Nom de l’Entreprise</strong><br/>
+        <span th:text="${entreprise.adresse}">Adresse complète</span><br/>
+        Téléphone : <span th:text="${entreprise.telephone}">+229 XX XX XX XX</span><br/>
+        Email : <span th:text="${entreprise.email}">contact@entreprise.com</span>
+    </div>
+</header>
+
+<main>
+    <!-- ===== Début du contrat ===== -->
+
+    <p style="text-align: center; font-weight: bold;">
+        CONTRAT DE TRAVAIL A DUREE INDETERMINÉE
+    </p>
+    <p style="text-align: center; font-weight: bold;">
+        -------------------
+    </p>
+    <p>
+        <strong style="display: block; margin-bottom: 10px;">
+            ENTRE LES SOUSSIGNÉS
+        </strong>
+    </p>
+    <br/>
+    <p><strong style="margin-bottom: 10px">EMPLOYEUR</strong></p>
+    <br/>
+    <p>RAISON SOCIALE : <strong th:text="${employeur.raisonSociale}">……………………………………</strong></p>
+    <p>SIÈGE SOCIAL : COTONOU RÉPUBLIQUE DU BÉNIN </p>
+    <p>ADRESSE : <span th:text="${employeur.adresse}">……………………………………………</span></p>
+    <p>REPRESENTÉE : légalement par Monsieur <strong th:text="${employeur.dg}">[Nom et Prénom du Directeur
+        Général]</strong></p>
+    <p>FONCTION : Directeur Général</p>
+    <p style="text-align: center"><strong>CI-APRÈS DÉSIGNÉ « L’EMPLOYEUR » D’UNE PART ET,</strong></p>
+    <br/>
+    <p><strong style="margin-bottom: 10px">EMPLOYÉ</strong></p>
+    <br/>
+
+    <p><strong>NOM ET PRÉNOMS</strong> : <span th:text="${employe.nomComplet}">……………………………………………</span></p>
+    <p><strong>DATE ET LIEU DE NAISSANCE</strong> : <span th:text="${employe.dateNaissance}">……………………………………………</span>
+    </p>
+    <p><strong>NATIONALITÉ</strong> : <span th:text="${employe.nationalite}">……………………………………………</span></p>
+    <p><strong>RÉSIDENCE HABITUELLE</strong> : <span th:text="${employe.residence}">……………………………………………</span></p>
+    <p><strong>SITUATION DE FAMILLE</strong> : <span th:text="${employe.situationFamiliale}">……………………………………………</span>
+    </p>
+    <p><strong>DIPLÔME REQUIS POUR L’EMPLOI OCCUPÉ</strong> : <span th:text="${employe.diplome}">………………………………………</span>
+    </p>
+    <p style="text-align: center"><strong>CI-APRÈS DÉSIGNÉ L’EMPLOYÉ D’AUTRE PART</strong></p>
+    <br/>
+    <p>Qui déclare être libre de tout engagement, il a été d’un commun accord, convenu de ce qui suit :</p>
+    <br/>
+    <!-- ARTICLES / CLAUSES ... (inchangés) -->
+
+    <p><strong>ARTICLE 1 : CONDITIONS GÉNÉRALES D’ENGAGEMENT</strong></p>
+    <p>Le présent contrat est régi par la loi n° 98-004 du 27 Janvier 1998 portant Code du Travail , les textes
+        modificatifs subséquents et ceux pris pour son application ; la loi n° 2017-05 du 29 Août 2017 fixant les
+        conditions et la procédure d’embauche, de placement de la main-d’œuvre et de résiliation du contrat de travail
+        en République du Bénin ;la loi N° 98-019 du 21 Mars 2003 portant Code de Sécurité Sociale en République du Bénin
+        et la Loi N° 2007-02 du 26 Mars 2007 portant modification des dispositions des articles 10, 89, 93, 94, 95 et
+        101 de la loi n°98-019 du 21 mars 2003 portant Code de Sécurité Sociale en République du Bénin ; la Convention
+        Collective Générale du Travail du 30 déc. 2005.</p>
+
+    <p><strong>ARTICLE 2 : NATURE DU CONTRAT</strong></p>
+    <p>Le présent contrat est conclu pour <strong>une durée indéterminée</strong> et prend effet à compter du …………….</p>
+    <p>Ace titre, il est chargé principalement de :</p>
+    <!-- ... garde le reste de ton texte existant ... -->
+
+    <p>
+        Fait en trois (3) exemplaires originaux - Cotonou, le <span
+            th:text="${contrat.dateSignature}">…………………</span><br/>
+        L’Employé &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pour l’Entreprise<br/>
+        Signature précédée de la Mention “Lu et approuvé” &nbsp;&nbsp; Le Directeur Général<br/>
+        <strong th:text="${employe.nomComplet}">Nom et Prénom de l’Employé</strong> &nbsp;&nbsp;
+        <strong th:text="${employeur.dg}">Nom et Prénom du DG</strong><br/>
+        VISÉ ET ENREGISTRÉ SOUS LE NUMÉRO …………/ MTFP/DGT/DRP-DS/SRI DU ………2018<br/>
+        LA DIRECTRICE GENERALE DU TRAVAIL : <strong>Mireille Constance LEGBA ADANKON</strong>
+    </p>
+</main>
+
+</body>
+</html>

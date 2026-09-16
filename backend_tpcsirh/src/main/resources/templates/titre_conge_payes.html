@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Congé Payé</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.8;
+            color: #000;
+        }
+        .letterhead {
+            width: 20%;
+            height: auto;
+            max-height: 4cm;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 1cm;
+        }
+        .header-note {
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .date-location {
+            text-align: right;
+            margin-bottom: 30px;
+        }
+        .recipient {
+            margin-bottom: 30px;
+            text-align: right;
+        }
+        .recipient-content {
+            display: inline-block;
+            text-align: left;
+            padding-left: 0;
+            margin-left: auto;
+            border-left: none;
+        }
+        .reference {
+            margin-bottom: 10px;
+        }
+        .object {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .object-underline {
+            text-decoration: underline;
+        }
+        .content {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+        .content p {
+            margin-bottom: 5px;
+        }
+        .closing {
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+        .signature {
+            margin-top: 60px;
+            text-align: right;
+        }
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .signature-info {
+            clear: both;
+        }
+        .signature-container {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<!--<img th:src="'https://www.talentsplusafrique.com/assets/img/logo.png'" alt="En-tête" class="letterhead"/>-->
+<img th:src="${enteteImage}" alt="En-tête" class="letterhead"/>
+<div class="header-note">
+    <!--    (sur papier à entête de l'entreprise)-->
+</div>
+
+<div class="date-location">
+    Cotonou, le <span th:text="${#temporals.format(dateLettre, 'dd/MM/yyyy')}"></span>
+</div>
+
+<div class="recipient">
+    <div class="recipient-content">
+        <p><strong>A</strong></p>
+        <p><span th:text="${genre}"></span> <span th:text="${nomPrenomEmploye}"></span></p>
+        <p th:text="${adresseEmploye}"></p>
+    </div>
+</div>
+
+<div class="reference">
+    Réf : <span th:text="${reference}"></span>
+</div>
+
+<div class="object">
+    <span class="object-underline">Objet</span> : Vos congés payés
+</div>
+
+<div class="content">
+    <p><span th:text="${genre}"></span>,</p>
+
+    <p>
+        Nous avons bien reçu votre courrier du <span th:text="${#temporals.format(dateDemandeEmploye, 'dd/MM/yyyy')}"></span>
+        dans lequel vous nous indiquez que vous souhaitez prendre vos congés annuels du
+        <span th:text="${#temporals.format(dateDebutCongé, 'dd/MM/yyyy')}"></span>
+        au <span th:text="${#temporals.format(dateFinCongé, 'dd/MM/yyyy')}"></span>.
+    </p>
+
+    <p>
+        Nous vous informons que nous vous donnons notre accord pour ces dates de congés.
+    </p>
+
+    <p>
+        Votre date de reprise sera le <span th:text="${#temporals.format(dateReprise, 'dd/MM/yyyy')}"></span>.
+    </p>
+</div>
+
+<div class="closing">
+    <p>Nous vous prions d'agréer, <span th:text="${genre}"></span>, nos respectueuses salutations.</p>
+</div>
+
+<div class="signature">
+    <div class="signature-container">
+        <div class="qr-code" th:if="${qrCode}">
+            <img th:src="${qrCode}" alt="QR Code" style="width: 100%; height: 100%;"/>
+        </div>
+        <div class="signature-info">
+            <p th:text="${nomPrenomSignataire}"></p>
+            <p>Directeur Général</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
